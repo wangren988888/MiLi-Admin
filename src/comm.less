@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+.clear:after {
+    display: block;
+    content: '.';
+    clear: both;
+    visibility: hidden;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+.text-l {
+    text-align: left !important;
+}
+
+.text-r {
+    text-align: right !important;
+}
+
+.text-c {
+    text-align: center !important;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+@import 'https://at.alicdn.com/t/font_1542008_cb72usi9tl.css';
+
+.loop(@counter) when (@counter > 0) {
+    .p-@{counter} {
+        padding: (1px * @counter);
+    }
+    .p-t-@{counter} {
+        padding-top: (1px * @counter);
+    }
+    .p-r-@{counter} {
+        padding-right: (1px * @counter);
+    }
+    .p-b-@{counter} {
+        padding-bottom: (1px * @counter);
+    }
+    .p-l-@{counter} {
+        padding-left: (1px * @counter);
+    }
+    .m-@{counter} {
+        margin: (1px * @counter);
+    }
+    .m-t-@{counter} {
+        margin-top: (1px * @counter);
+    }
+    .m-r-@{counter} {
+        margin-right: (1px * @counter);
+    }
+    .m-b-@{counter} {
+        margin-bottom: (1px * @counter);
+    }
+    .m-l-@{counter} {
+        margin-left: (1px * @counter);
+    }
+    .fz-@{counter} {
+        font-size: (1px * @counter);
+    }
+    .loop((@counter - 1)); // 递归调用自身
+}
+
+.loop(50);

@@ -1,0 +1,46 @@
+.loginView {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-image: url(../../assets/images/body.svg);
+		background-repeat: no-repeat;
+		background-position: 50%;
+		background-size: 100%;
+		.loginCard{
+			width: 480px;
+			margin: 100px auto 24px;
+			// margin: 0 auto;
+			.title{
+				text-align: center;
+				font-size: 30px;
+				color:#28313b;
+				font-weight: normal;
+			}
+			.myCell{
+				border: 1px solid #ddd;
+				border-radius: 6px;
+			}
+		}
+}
+
+[m-t-10]{
+	margin-top: 20px;
+}
+
+
+ @media screen and (max-width: 414px) {
+	 .loginView{
+		 .loginCard{
+			 width: 90%;
+			 margin: 60px auto;
+			 .title{
+				 font-size: 22px;
+			 }
+			 .submitBtn{
+				 padding: 0 20px;
+			 }
+		 }
+	 }
+ }
