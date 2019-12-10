@@ -16,7 +16,8 @@
         props: {
             lang: String
         },
-        data() {
+        inject: ['i18nReload'],
+        data () {
             return {
                 langList: {
                     'zh-CN': '语言',
@@ -31,8 +32,9 @@
             }
         },
         watch: {
-            lang(lang) {
+            lang (lang) {
                 this.$i18n.locale = lang
+                this.i18nReload()
             }
         },
         computed: {
@@ -41,7 +43,7 @@
             // }
         },
         methods: {
-            selectLang(name) {
+            selectLang (name) {
                 this.$VantLocal(name)
                 this.$emit('on-lang-change', name)
             }

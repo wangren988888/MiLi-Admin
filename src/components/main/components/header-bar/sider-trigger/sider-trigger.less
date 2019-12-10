@@ -1,26 +1,33 @@
-.trans{
-  transition: transform .2s ease;
+.trans {
+    transition: transform .2s ease;
 }
-.funBtnBox{
+
+.funBtnBox {
     display: inline-block;
 }
-.sider-trigger-a{
-  padding: 0 12px;
-  width: auto;
-  height: 64px;
-  line-height: 64px;
-  display: inline-block;
-  text-align: center;
-  color: #5c6b77;
-  img{
-      height: 80%;
-      vertical-align: middle;
-  }
-  i{
-    .trans;
-  }
-  &.collapsed i{
-    transform: rotateZ(90deg);
-    .trans;
-  }
+
+.sider-trigger-a {
+    padding: 0 12px;
+    width: auto;
+    height: 64px;
+    line-height: 64px;
+    display: inline-block;
+    text-align: center;
+    color: #5c6b77;
+    &:first-child{
+        padding-left: 24px;
+    }
+    img {
+        height: 60%;
+        vertical-align: middle;
+    }
+
+    i {
+        .trans;
+    }
+
+    &.collapsed i {
+        transform: rotateZ(90deg);
+        .trans;
+    }
 }
