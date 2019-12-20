@@ -18,6 +18,7 @@ import 'v-org-tree/dist/v-org-tree.css'
 // cordova插件
 // import {CordovaFileManage, CordovaPermissionsManage} from '@/cordova-plugins';
 
+import { mapGetters } from 'vuex'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 
 Vue.component('vue-ueditor-wrap', VueUeditorWrap)
@@ -61,14 +62,11 @@ Vue.prototype.$config = config
 importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
 
-// 全局添加计算，返回cordovaReady
-// Vue.mixin({
-//     computed: {
-//         cordovaReady () {
-//             return this.$store.state.cordovaReady
-//         }
-//     }
-// })
+Vue.mixin({
+    computed: {
+        ...mapGetters(['screenType', 'clientHeight', 'cordovaReady']),
+    }
+})
 
 function initApp () {
     let app = new Vue({
@@ -82,7 +80,7 @@ function initApp () {
 
 initApp()
 
-// 初始化系统的文件读写权限，根据读写权限的获取情况进行逻辑判断；主要是为了打包称为app后单独部署时可通过读取配置文件中的网络请求baseUrl字段。
+// 初始化系统的文件读写权限，根据读写权限的获取情况进行逻辑判断；主要是为了打包为app后单独部署时可通过读取配置文件中的网络请求baseUrl字段。
 // function initFileManage() {
 //     CordovaFileManage.initFile().then(fs => {
 //         fs.root.getFile('weShopXAdmin.txt', {

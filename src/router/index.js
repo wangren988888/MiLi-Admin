@@ -10,6 +10,17 @@ import config from '@/config'
 const {homeName} = config
 let allMenus = routes.concat(menus)
 Vue.use(Router)
+
+
+//如果点击相同路由页面出现报错请把此段代码关闭注释
+// Router.prototype.replace = function push(location) {
+//     return originalPush.call(this, location).catch(err => err)
+// }
+// const originalReplace = Router.prototype.push
+// Router.prototype.push = function push(location) {
+//     return originalReplace.call(this, location).catch(err => err)
+// }
+
 const router = new Router({
     routes: allMenus,
     // mode: 'history'

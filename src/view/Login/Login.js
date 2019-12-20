@@ -3,12 +3,11 @@ import {
     CellGroup,
     Field,
     Button
-} from 'vant';
+} from 'vant'
 import {
     mapActions
-} from 'vuex';
-import {CordovaFileManage} from '@/cordova-plugins';
-
+} from 'vuex'
+import { CordovaFileManage } from '@/cordova-plugins'
 
 export default {
     components: {
@@ -17,7 +16,7 @@ export default {
         [Field.name]: Field,
         [Button.name]: Button
     },
-    data() {
+    data () {
         return {
             loginForm: {
                 userName: 'super_admin',
@@ -31,7 +30,7 @@ export default {
             'handleLogin',
             'getUserInfo'
         ]),
-        submit() {
+        submit () {
             this.handleLogin(this.loginForm).then(res => {
                 this.getUserInfo().then(res => {
                     this.$router.push({
@@ -39,12 +38,12 @@ export default {
                     })
                 })
             }).catch(error => {
-                console.log(error);
+                console.log(error)
             })
         }
     },
-    created() {
+    created () {
     },
-    mounted() {
+    mounted () {
     }
 }

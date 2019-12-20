@@ -26,7 +26,7 @@ export const getUserListApi = (params) => {
 
 export const getUserInfoApi = () => {
     return axios.request({
-        url: 'getUserInfo',
+        url: 'getUserInfo?token=super_admin',
         method: 'get'
     })
 }

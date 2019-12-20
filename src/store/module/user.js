@@ -1,5 +1,4 @@
 import {
-    registerTerminalApi,
     loginApi,
     logout,
     getUserInfoApi,
@@ -17,8 +16,6 @@ import {
 
 export default {
     state: {
-        terminal: {}, //设备信息
-        terminalUsers: [], //当前设备可登录用户列表
         userInfo: {},
         token: getToken(),
         hasGetInfo: false,
@@ -29,12 +26,6 @@ export default {
         messageContentStore: {}
     },
     mutations: {
-        setTerminal(state, terminal) {
-            state.terminal = terminal;
-        },
-        setTerminalUsers(state, users) {
-            state.terminalUsers = users;
-        },
         setUserInfo(state, userInfo) {
             state.userInfo = userInfo;
         },

@@ -1,9 +1,9 @@
-import {getDate} from '@/libs/tools'
-import {getEssayClassifyListApi, getEssayListForClassifyIdApi, delEssayApi} from '@/api/essayApis'
+import dayjs from 'dayjs'
+import { getEssayClassifyListApi, getEssayListForClassifyIdApi, delEssayApi } from '@/api/essayApis'
 
 export default {
     name: 'essay_list',
-    data() {
+    data () {
         return {
             essayClassifyList: [],
             total: 0,
@@ -14,24 +14,30 @@ export default {
             columns: [
                 {
                     title: '标题',
-                    key: 'title'
+                    key: 'title',
+                    fixed: 'left',
+                    minWidth: this.screenType !== 'big' ? 120 : ''
                 },
                 {
                     title: '副标题',
-                    key: 'subTitle'
+                    key: 'subTitle',
+                    minWidth: this.screenType !== 'big' ? 120 : ''
                 },
                 {
                     title: '作者',
-                    key: 'author'
+                    key: 'author',
+                    minWidth: this.screenType !== 'big' ? 140 : ''
                 },
                 {
                     title: '新建时间',
                     render: (h, params) => {
-                        return h('div', {}, getDate(new Date(params.row.createdAt).getTime() / 1000, 'year'))
-                    }
+                        return h('div', {}, dayjs(new Date(params.row.createdAt).getTime()).format('YYYY-MM-DD HH:mm'))
+                    },
+                    minWidth: this.screenType !== 'big' ? 170 : ''
                 },
                 {
                     title: '操作',
+                    minWidth: this.screenType !== 'big' ? 120 : '',
                     render: (h, params) => {
                         return [h('Button', {
                             style: {
@@ -69,7 +75,7 @@ export default {
                                         classifyId: params.row.classifyId
                                     }).then(res => {
                                         if (res) {
-                                            this.getData();
+                                            this.getData()
                                             this.$Notice.success({
                                                 title: '智在日常',
                                                 desc: res.data.message
@@ -86,7 +92,7 @@ export default {
         }
     },
     methods: {
-        addEssay() {
+        addEssay () {
             this.$router.push({
                 name: 'new_essay',
                 params: {
@@ -94,49 +100,49 @@ export default {
                 }
             })
         },
-        pageChange(page) {
-            console.log(page);
-            this.currentPage = page;
-            this.getData();
+        pageChange (page) {
+            console.log(page)
+            this.currentPage = page
+            this.getData()
         },
-        sizeChange(size) {
-            this.currentPage = 1;
-            this.limit = size;
-            this.getData();
+        sizeChange (size) {
+            this.currentPage = 1
+            this.limit = size
+            this.getData()
         },
-        classifyChange() {
-            this.currentPage = 1;
-            this.getData();
+        classifyChange () {
+            this.currentPage = 1
+            this.getData()
         },
-        getData() {
+        getData () {
             getEssayListForClassifyIdApi({
                 currentPage: this.currentPage,
                 limit: this.limit,
                 classifyId: this.currentClassifyId
             }).then(essayRes => {
-                this.tableData = essayRes.data.rows;
-                this.total = essayRes.data.count;
+                this.tableData = essayRes.data.rows
+                this.total = essayRes.data.count
             })
         }
     },
-    created() {
+    created () {
     },
-    mounted() {
+    mounted () {
         getEssayClassifyListApi({
             currentPage: 1,
             limit: 99999
         }).then(res => {
             // console.log(res);
-            this.essayClassifyList = res.data.rows;
-            this.currentClassifyId = this.essayClassifyList[0].id;
+            this.essayClassifyList = res.data.rows
+            this.currentClassifyId = this.essayClassifyList[0].id
             getEssayListForClassifyIdApi({
                 currentPage: this.currentPage,
                 limit: this.limit,
                 classifyId: this.currentClassifyId
             }).then(essayRes => {
                 // console.log(essayRes);
-                this.tableData = essayRes.data.rows;
-                this.total = essayRes.data.count;
+                this.tableData = essayRes.data.rows
+                this.total = essayRes.data.count
             })
         })
     }

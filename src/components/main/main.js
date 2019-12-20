@@ -15,12 +15,12 @@ import {
     getNewTagList,
     routeEqual
 } from '@/libs/util'
-import config from '@/config'
+// import config from '@/config'
 import routers from '@/router/routers'
 import minLogo from '@/assets/images/minlogo.png'
 import maxLogo from '@/assets/images/maxlogo.png'
 import './main.less'
-const imgBaseUrl = process.env.NODE_ENV === 'development' ? config.imgBaseUrl.dev : config.imgBaseUrl.pro;
+// const imgBaseUrl = process.env.NODE_ENV === 'development' ? config.imgBaseUrl.dev : config.imgBaseUrl.pro;
 
 export default {
     name: 'Main',
@@ -60,7 +60,10 @@ export default {
         },
         userAvatar() {
             if (this.$store.state.user.userInfo.avatarImgPath !== '') {
-                return imgBaseUrl + this.$store.state.user.userInfo.avatarImgPath
+                // return imgBaseUrl + this.$store.state.user.userInfo.avatarImgPath
+                // return this.$store.state.user.userInfo.avatarImgPath
+                //头像根据实际情况处理。
+                return minLogo;
             } else {
                 return minLogo
             }
